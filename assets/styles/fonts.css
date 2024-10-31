@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'Neutra Text';
+    src: url('../fonts/NeutraText-Bold.woff2') format('woff2'),
+        url('../fonts/NeutraText-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neutra Text';
+    src: url('../fonts/NeutraText-Light.woff2') format('woff2'),
+        url('../fonts/NeutraText-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neutra Text TF';
+    src: url('../fonts/NeutraTextTF-Book.woff2') format('woff2'),
+        url('../fonts/NeutraTextTF-Book.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neutra Text Alt';
+    src: url('../fonts/NeutraText-BookAlt.woff2') format('woff2'),
+        url('../fonts/NeutraText-BookAlt.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neutra Text';
+    src: url('../fonts/NeutraText-BoldItalic.woff2') format('woff2'),
+        url('../fonts/NeutraText-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+

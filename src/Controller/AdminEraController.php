@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Era;
 use App\Form\DateTimeHelper;
+use App\Form\DeleteType;
 use App\Form\EraType;
 use App\Helper\DoctrineHelper;
 use App\Model\Breadcrumb;
@@ -59,6 +60,45 @@ class AdminEraController extends AbstractController
     {
         return $this->render('admin/era/view.html.twig', ["era" => $era, 'breadcrumbs' => $this->getBreadcrumbs($translator)]);
     }
+
+    #[Route('/edit/{era}', name: 'admin_era_edit')]
+    public function edit(Request $request, Era $era, TranslatorInterface $translator, ManagerRegistry $registry): Response
+    {
+        $form = $this->createForm(EraType::class, $era)
+            ->add('submit', SubmitType::class, ['label' => 'edit.submit', 'translation_domain' => 'admin_era']);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            DoctrineHelper::persistAndFlush($registry, $era);
+
+            $message = $translator->trans('edit.success', [], 'admin_era');
+            $this->addFlash('success', $message);
+
+            return $this->redirect($this->generateUrl('admin_index'));
+        }
+
+        return $this->render('admin/era/edit.html.twig', ['form' => $form->createView(), 'breadcrumbs' => $this->getBreadcrumbs($translator)]);
+    }
+
+    #[Route('/remove/{era}', name: 'admin_era_remove')]
+    public function remove(Request $request, Era $era, TranslatorInterface $translator, ManagerRegistry $registry): Response
+    {
+        $form = $this->createForm(DeleteType::class, $era)
+            ->add('submit', SubmitType::class, ['label' => 'remove.submit', 'translation_domain' => 'admin_era', 'attr' => ['class' => 'btn btn-danger']]);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            DoctrineHelper::persistAndFlush($registry, $era);
+
+            $message = $translator->trans('remove.success', [], 'admin_era');
+            $this->addFlash('success', $message);
+
+            return $this->redirect($this->generateUrl('admin_index'));
+        }
+
+        return $this->render('admin/era/remove.html.twig', ['form' => $form->createView(), 'era' => $era, 'breadcrumbs' => $this->getBreadcrumbs($translator)]);
+    }
+
 
     /**
      * @return Breadcrumb[]

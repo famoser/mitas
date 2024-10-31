@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Era;
 use App\Model\Breadcrumb;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -12,9 +14,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class AdminController extends AbstractController
 {
     #[Route('/', name: 'admin_index')]
-    public function number(TranslatorInterface $translator): Response
+    public function number(ManagerRegistry $registry, TranslatorInterface $translator): Response
     {
-        return $this->render('admin/index.html.twig', ['breadcrumbs' => $this->getBreadcrumbs($translator)]);
+        $repository = $registry->getRepository(Era::class);
+        $eras = $repository->findBy([], ['deadlineAt' => 'DESC']);
+
+        return $this->render('admin/index.html.twig', ['breadcrumbs' => $this->getBreadcrumbs($translator), 'eras' => $eras]);
     }
 
     /**

@@ -5,3 +5,14 @@ new:
     title: "Epoche erstellen"
     submit: "erstellen"
     success: "Epoche erstellt"
+
+edit:
+    title: 'Epoche bearbeiten'
+    submit: "speichern"
+    success: "Epoche gespeichert"
+
+remove:
+    title: "Epoche entfernen"
+    confirm: 'Soll wirklich die Epoche "%era%" entfernt werden, inklusive aller damit verbundenen Daten? Dieser Schritt kann nicht rückgängig gemacht werden.'
+    submit: "entfernen"
+    success: "Epoche entfernt"

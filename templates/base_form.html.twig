@@ -6,6 +6,9 @@
     <section class="container-text">
         <h1 class="mb-3">{{ block("title") }}</h1>
 
+        {% block body_form_pre %}
+        {% endblock %}
+
         {% block body_form %}
             {{ form(form) }}
         {% endblock %}

@@ -11,7 +11,41 @@
         {{ 'index.description'|trans }}
     </p>
 
-    <a class="btn btn-primary" href="{{ path('admin_era_new') }}">
-        {{ "new.title"|trans({}, "admin_era") }}
-    </a>
+    <div class="mb-3">
+        <a class="btn btn-primary" href="{{ path('admin_era_new') }}">
+            {{ "new.title"|trans({}, "admin_era") }}
+        </a>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>{{ "Name"|trans({}, 'entity_era') }}</th>
+            <th>{{ "Deadline at"|trans({}, 'entity_era') }}</th>
+            <th class="w-minimal"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for era in eras %}
+            <tr>
+                <td>
+                    <a href="{{ path('admin_era_view', {'era': era.id}) }}">
+                        {{ era.name }}
+                    </a>
+                </td>
+                <td>{{ era.deadlineAt|format_date }}</td>
+                <td>
+                    <span class="btn-group">
+                        <a class="btn btn-outline-primary" href="{{ path('admin_era_edit', {'era': era.id}) }}">
+                            {{ "edit.title"|trans({}, "admin_era") }}
+                        </a>
+                        <a class="btn btn-outline-danger" href="{{ path('admin_era_remove', {'era': era.id}) }}">
+                            {{ "remove.title"|trans({}, "admin_era") }}
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

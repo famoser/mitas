@@ -26,8 +26,8 @@ class EraType extends AbstractType
             'choice_label' => 'name',
             'query_builder' => function (EntityRepository $er): QueryBuilder {
                 /** @var EntityRepository<Era> $er */
-                return $er->createQueryBuilder('u')
-                    ->orderBy('u.createdAt', 'DESC');
+                return $er->createQueryBuilder('e')
+                    ->orderBy('e.deadlineAt', 'DESC');
             },
             'mapped' => false,
             'required' => false

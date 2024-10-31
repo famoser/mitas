@@ -10,4 +10,44 @@
     <p class="lead">
         {{ 'index.description'|trans }}
     </p>
+
+    <div class="mb-3">
+        <a class="btn btn-primary" href="{{ path('admin_era_entry_new', {'era': era.id}) }}">
+            {{ "new.title"|trans({}, "admin_era_entry") }}
+        </a>
+    </div>
+
+    {% if era.entries|length > 0 %}
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>{{ "Full name"|trans({}, 'entity_era_entry') }}</th>
+                <th>{{ "Email"|trans({}, 'entity_era_entry') }}</th>
+                <th class="w-minimal"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entry in era.entries %}
+                <tr>
+                    <td>
+                        {{ entry.fullName }}
+                    </td>
+                    <td>{{ entry.email }}</td>
+                    <td>
+                    <span class="btn-group">
+                        <a class="btn btn-outline-primary"
+                           href="{{ path('admin_era_entry_edit', {'era': era.id, 'entry': entry.id}) }}">
+                            <i class="fas fa-pencil"></i>
+                        </a>
+                        <a class="btn btn-outline-danger"
+                           href="{{ path('admin_era_entry_remove', {'era': era.id, 'entry': entry.id}) }}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </span>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}

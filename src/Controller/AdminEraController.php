@@ -55,13 +55,13 @@ class AdminEraController extends AbstractController
     }
 
 
-    #[Route('/view/{era}', name: 'admin_era_view')]
+    #[Route('/{era}/view', name: 'admin_era_view')]
     public function view(Era $era, TranslatorInterface $translator): Response
     {
         return $this->render('admin/era/view.html.twig', ["era" => $era, 'breadcrumbs' => $this->getBreadcrumbs($translator)]);
     }
 
-    #[Route('/edit/{era}', name: 'admin_era_edit')]
+    #[Route('/{era}/edit', name: 'admin_era_edit')]
     public function edit(Request $request, Era $era, TranslatorInterface $translator, ManagerRegistry $registry): Response
     {
         $form = $this->createForm(EraType::class, $era)
@@ -80,7 +80,7 @@ class AdminEraController extends AbstractController
         return $this->render('admin/era/edit.html.twig', ['form' => $form->createView(), 'breadcrumbs' => $this->getBreadcrumbs($translator)]);
     }
 
-    #[Route('/remove/{era}', name: 'admin_era_remove')]
+    #[Route('/{era}/remove', name: 'admin_era_remove')]
     public function remove(Request $request, Era $era, TranslatorInterface $translator, ManagerRegistry $registry): Response
     {
         $form = $this->createForm(DeleteType::class, $era)

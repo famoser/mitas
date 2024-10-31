@@ -1,0 +1,18 @@
+index:
+    description: 'Mitarbeitende verwalten'
+
+new:
+    title: "Mitarbeiter:in hinzufügen"
+    submit: "erstellen"
+    success: "Mitarbeiter:in hinzugefügt"
+
+edit:
+    title: 'Mitarbeiter:in bearbeiten'
+    submit: "speichern"
+    success: "Mitarbeiter:in gespeichert"
+
+remove:
+    title: "Mitarbeiter:in entfernen"
+    confirm: 'Soll wirklich "%entry%" von der Epoche entfernt werden, inklusive der damit verbundenen Daten? Dieser Schritt kann nicht rückgängig gemacht werden.'
+    submit: "entfernen"
+    success: "Mitarbeiter:in entfernt"

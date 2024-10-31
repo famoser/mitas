@@ -1,0 +1,9 @@
+{% extends 'base_form.html.twig' %}
+
+{% block title %}{{ 'remove.title'|trans }}{% endblock %}
+
+{% trans_default_domain "admin_era_entry" %}
+
+{% block body_form_pre %}
+    <p>{{ "remove.confirm"|trans({"%entry%": entry.fullName}) }}</p>
+{% endblock %}

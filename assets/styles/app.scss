@@ -23,6 +23,9 @@ $custom-control-cursor: pointer;
 $font-family-sans-serif: 'Neutra Text', 'Helvetica', sans-serif;
 
 @import '~bootstrap/scss/bootstrap';
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+
 @import "fonts.css";
 @import "typography.scss";
 @import "layout.scss";

@@ -37,10 +37,10 @@
                 <td>
                     <span class="btn-group">
                         <a class="btn btn-outline-primary" href="{{ path('admin_era_edit', {'era': era.id}) }}">
-                            {{ "edit.title"|trans({}, "admin_era") }}
+                            <i class="fas fa-pencil"></i>
                         </a>
                         <a class="btn btn-outline-danger" href="{{ path('admin_era_remove', {'era': era.id}) }}">
-                            {{ "remove.title"|trans({}, "admin_era") }}
+                            <i class="fas fa-trash"></i>
                         </a>
                     </span>
                 </td>

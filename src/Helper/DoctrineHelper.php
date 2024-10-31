@@ -23,4 +23,13 @@ class DoctrineHelper
         }
         $manager->flush();
     }
+
+    public static function removeAndFlush(ManagerRegistry $registry, object ...$entities): void
+    {
+        $manager = $registry->getManager();
+        foreach ($entities as $entity) {
+            $manager->remove($entity);
+        }
+        $manager->flush();
+    }
 }

@@ -88,7 +88,7 @@ class AdminEraController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            DoctrineHelper::persistAndFlush($registry, $era);
+            DoctrineHelper::removeAndFlush($registry, $era);
 
             $message = $translator->trans('remove.success', [], 'admin_era');
             $this->addFlash('success', $message);

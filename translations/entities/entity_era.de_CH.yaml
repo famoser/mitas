@@ -1,0 +1,6 @@
+Name: "Bezeichnung"
+Deadline at: "Frist"
+Copy era: "Inhalte von verganener Epoche kopieren"
+
+help:
+    deadline_at: "Bis zu dieser Frist können die Mitarbeiter Ihre Arbeitspräferenzen bearbeiten."

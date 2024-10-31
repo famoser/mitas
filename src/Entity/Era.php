@@ -12,6 +12,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\IdTrait;
+use App\Entity\Traits\TimeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -25,15 +26,16 @@ use Doctrine\ORM\Mapping as ORM;
 class Era
 {
     use IdTrait;
+    use TimeTrait;
 
     #[ORM\Column(type: Types::STRING)]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private ?\DateTimeImmutable $lastReminderSent = null;
-
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $deadlineAt = null;
+
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $lastReminderSent = null;
 
     /**
      * @var Collection<string, EraEntry>

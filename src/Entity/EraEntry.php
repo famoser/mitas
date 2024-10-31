@@ -12,6 +12,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\IdTrait;
+use App\Entity\Traits\TimeTrait;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,6 +24,7 @@ use Doctrine\ORM\Mapping as ORM;
 class EraEntry
 {
     use IdTrait;
+    use TimeTrait;
 
     #[ORM\Column(type: Types::STRING)]
     private ?string $fullName = null;
@@ -30,20 +32,20 @@ class EraEntry
     #[ORM\Column(type: Types::STRING)]
     private ?string $email = null;
 
-    #[ORM\Column(type: Types::STRING)]
+    #[ORM\Column(type: Types::STRING, nullable: true)]
     private ?string $workMode = null;
 
-    #[ORM\Column(type: Types::STRING)]
+    #[ORM\Column(type: Types::STRING, nullable: true)]
     private ?string $team = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $generalAgreement = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $lastReminderSent = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private ?\DateTimeImmutable $lastChangeAt = null;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $lastConfirmedAt = null;
 
     #[ORM\ManyToOne(targetEntity: Era::class, inversedBy: "entries")]
     private ?Era $era = null;
@@ -108,14 +110,14 @@ class EraEntry
         $this->lastReminderSent = $lastReminderSent;
     }
 
-    public function getLastChangeAt(): ?\DateTimeImmutable
+    public function getLastConfirmedAt(): ?\DateTimeImmutable
     {
-        return $this->lastChangeAt;
+        return $this->lastConfirmedAt;
     }
 
-    public function setLastChangeAt(?\DateTimeImmutable $lastChangeAt): void
+    public function setLastConfirmedAt(?\DateTimeImmutable $lastConfirmedAt): void
     {
-        $this->lastChangeAt = $lastChangeAt;
+        $this->lastConfirmedAt = $lastConfirmedAt;
     }
 
     public function getEra(): ?Era

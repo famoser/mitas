@@ -1,0 +1,7 @@
+index:
+    description: 'Epoche verwalten'
+
+new:
+    title: "Epoche erstellen"
+    submit: "erstellen"
+    success: "Epoche erstellt"

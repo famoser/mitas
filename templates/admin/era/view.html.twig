@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ era.name }}{% endblock %}
+{% block description %}{{ 'index.description'|trans }}{% endblock %}
+
+{% trans_default_domain "admin_era" %}
+
+{% block body %}
+    <section class="container py-5">
+        <h1>{{ era.name }}</h1>
+        <p class="lead">
+            {{ 'index.description'|trans }}
+        </p>
+    </section>
+{% endblock %}

@@ -2,6 +2,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\IdTrait;
+use App\Entity\Traits\TimeTrait;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -10,6 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface
 {
     use IdTrait;
+    use TimeTrait;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private ?string $email;

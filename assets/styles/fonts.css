@@ -17,10 +17,10 @@
 }
 
 @font-face {
-    font-family: 'Neutra Text TF';
+    font-family: 'Neutra Text';
     src: url('../fonts/NeutraTextTF-Book.woff2') format('woff2'),
         url('../fonts/NeutraTextTF-Book.woff') format('woff');
-    font-weight: 500;
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }

@@ -1,0 +1,18 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+$border-radius: 0;
+$border-radius-lg: 0;
+$border-radius-sm: 0;
+$modal-backdrop-opacity: 0.3;
+$primary: #203C34;
+$link-color: $primary;
+$secondary: #c86351;
+$custom-control-cursor: pointer;
+
+$font-family-sans-serif: 'Neutra Text', 'Helvetica', sans-serif;
+
+@import '~bootstrap/scss/bootstrap';
+@import "fonts.css";
+@import "typography.scss";
+@import "layout.scss";
+

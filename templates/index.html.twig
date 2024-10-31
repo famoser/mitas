@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'index.title'|trans }}{% endblock %}
+{% block description %}{{ 'index.description'|trans }}{% endblock %}
+
+{% trans_default_domain "index" %}
+
+{% block body %}
+    <section class="container container-text py-5">
+        <h1>{{ 'index.title'|trans }}</h1>
+        <p class="lead">
+            {{ 'index.description'|trans }}
+        </p>
+
+        <p>
+            {{ 'index.welcome'|trans }}
+        </p>
+
+        <p>
+            {{ 'index.created_by'|trans }} <a href="https://famoser.ch" target="_blank">famoser.ch</a>.<br/>
+            {{ 'index.open_source'|trans }} <a href="https://github.com/famoser/mitas" target="_blank">famoser/mitas</a>.
+        </p>
+    </section>
+{% endblock %}

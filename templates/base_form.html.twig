@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block description %}{{ block("title") }}{% endblock %}
 
-{% block body %}
-    <section class="container container-text py-5">
-        <h1 class="mb-5">{{ block("title") }}</h1>
+{% block body_admin %}
+    <section class="container-text">
+        <h1 class="mb-3">{{ block("title") }}</h1>
 
         {% block body_form %}
             {{ form(form) }}

@@ -6,6 +6,7 @@ use App\Entity\Era;
 use App\Form\DateTimeHelper;
 use App\Form\EraType;
 use App\Helper\DoctrineHelper;
+use App\Model\Breadcrumb;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -34,7 +35,7 @@ class AdminEraController extends AbstractController
             return $this->redirect($this->generateUrl('admin_era_view', ['era' => $era->getId()]));
         }
 
-        return $this->render('admin/era/new.html.twig', ['form' => $form->createView()]);
+        return $this->render('admin/era/new.html.twig', ['form' => $form->createView(), 'breadcrumbs' => $this->getBreadcrumbs($translator)]);
     }
 
     private function createDefaultEra(TranslatorInterface $translator): Era
@@ -54,8 +55,22 @@ class AdminEraController extends AbstractController
 
 
     #[Route('/view/{era}', name: 'admin_era_view')]
-    public function view(Era $era): Response
+    public function view(Era $era, TranslatorInterface $translator): Response
     {
-        return $this->render('admin/era/view.html.twig');
+        return $this->render('admin/era/view.html.twig', ["era" => $era, 'breadcrumbs' => $this->getBreadcrumbs($translator)]);
+    }
+
+    /**
+     * @return Breadcrumb[]
+     */
+    private function getBreadcrumbs(TranslatorInterface $translator): array
+    {
+        return [
+            new Breadcrumb(
+                $translator->trans('index.title', [], 'admin'),
+                $this->generateUrl('admin_index'),
+            ),
+            new Breadcrumb($translator->trans('entity.title', [], 'entity_era')),
+        ];
     }
 }

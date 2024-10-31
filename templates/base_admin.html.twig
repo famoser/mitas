@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}{{ block("title") }}{% endblock %}
+
+{% block body %}
+    <section class="container py-5">
+        {% if breadcrumbs is defined and breadcrumbs|length > 0 %}
+            <nav aria-label="breadcrumb" class="mb-5">
+                <ol class="breadcrumb mt-3">
+                    {% for breadcrumb in breadcrumbs %}
+                        {% if not (breadcrumb.path and breadcrumb.path ends with app.request.pathinfo) %}
+                            <li class="breadcrumb-item">
+                                {% if breadcrumb.path %}
+                                    <a href="{{ breadcrumb.path }}">
+                                        {{ breadcrumb.title }}
+                                    </a>
+                                {% else %}
+                                    {{ breadcrumb.title }}
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {{ block("title") }}
+                    </li>
+                </ol>
+            </nav>
+        {% endif %}
+
+        {% block body_admin %}
+            {{ form(form) }}
+        {% endblock %}
+    </section>
+{% endblock %}

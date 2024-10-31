@@ -1,19 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}{{ 'index.title'|trans }}{% endblock %}
 {% block description %}{{ 'index.description'|trans }}{% endblock %}
 
 {% trans_default_domain "admin" %}
 
-{% block body %}
-    <section class="container py-5">
-        <h1>{{ 'index.title'|trans }}</h1>
-        <p class="lead">
-            {{ 'index.description'|trans }}
-        </p>
+{% block body_admin %}
+    <h1>{{ 'index.title'|trans }}</h1>
+    <p class="lead">
+        {{ 'index.description'|trans }}
+    </p>
 
-        <a class="btn btn-primary" href="{{ path('admin_era_new') }}">
-            {{ "new.title"|trans({}, "admin_era") }}
-        </a>
-    </section>
+    <a class="btn btn-primary" href="{{ path('admin_era_new') }}">
+        {{ "new.title"|trans({}, "admin_era") }}
+    </a>
 {% endblock %}

@@ -17,7 +17,7 @@
 
 {% set flashes = app.session.flashbag.all() %}
 {% if flashes|length > 0 %}
-    <div class="flash-wrapper">
+    <div class="flash-wrapper container container-text">
         {% for type, messages in flashes %}
             {% for message in messages %}
                 <div class="col-12 alert alert-{{ type }} alert-dismissible fade show" role="alert">

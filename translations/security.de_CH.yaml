@@ -1,0 +1,14 @@
+exit_impersonation: 'Stop impersonate'
+
+login:
+    title: "Administrator-Login"
+    description: "Login in den Administrationsbereich des Tools"
+    form:
+        email: 'E-Mail'
+        submit: 'Login-Link zusenden'
+    notification:
+        subject: "Login-Link"
+    success:
+        login_link_sent: 'Login-Link wurde versandt. Bitte schauen Sie in Ihrem Postfach nach.'
+    danger:
+        not_admin: 'Diese E-Mail ist nicht als Administrator erfasst. Der Login-Link konnte nicht versandt werden.'

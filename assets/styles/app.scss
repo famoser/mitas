@@ -7,6 +7,17 @@ $modal-backdrop-opacity: 0.3;
 $primary: #203C34;
 $link-color: $primary;
 $secondary: #c86351;
+$theme-colors: (
+        'primary':    $primary,
+        'secondary':  $secondary,
+        'success':    $success,
+        'info':       $info,
+        'warning':    $warning,
+        'orange':    $orange,
+        'danger':     $danger,
+        'light':      $light,
+        'dark':       $dark
+);
 $custom-control-cursor: pointer;
 
 $font-family-sans-serif: 'Neutra Text', 'Helvetica', sans-serif;

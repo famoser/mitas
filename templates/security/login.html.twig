@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'login.title'|trans }}{% endblock %}
+{% block description %}{{ 'login.description'|trans }}{% endblock %}
+
+{% trans_default_domain "security" %}
+
+{% block body %}
+    <section class="container container-text py-5">
+        <h1>{{ 'login.title'|trans }}</h1>
+        <p class="lead">
+            {{ 'login.description'|trans }}
+        </p>
+
+        {% if success %}
+            <p class="alert alert-success">
+                {{ "login.success.login_link_sent"|trans }}
+            </p>
+        {% else %}
+            {{ form(form) }}
+        {% endif %}
+    </section>
+{% endblock %}

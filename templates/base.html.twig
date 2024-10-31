@@ -14,6 +14,31 @@
     {% endblock %}
 </head>
 <body>
+
+{% set flashes = app.session.flashbag.all() %}
+{% if flashes|length > 0 %}
+    <div class="flash-wrapper">
+        {% for type, messages in flashes %}
+            {% for message in messages %}
+                <div class="col-12 alert alert-{{ type }} alert-dismissible fade show" role="alert">
+                    <div class="container text-center">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if is_granted('IS_IMPERSONATOR') %}
+    <div class="flash-wrapper">
+        <div class="alert alert-danger" role="alert">
+            <a href="{{ impersonation_exit_path(app.request.requestUri) }}">{{ "exit_impersonation"|trans({}, "security") }}</a>
+        </div>
+    </div>
+{% endif %}
+
 {% block body %}{% endblock %}
 </body>
 </html>

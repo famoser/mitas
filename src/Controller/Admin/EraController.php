@@ -52,14 +52,18 @@ class EraController extends AbstractController
     private function createDefaultEra(TranslatorInterface $translator): Era
     {
         $now = new \DateTime();
+        $oneMonth = new \DateInterval('P1M');
+
         $expectedDeadline = (clone $now)->setDate((int) $now->format('Y'), (int) $now->format('m'), 15);
         if ($expectedDeadline < $now) {
-            $expectedDeadline->add(new \DateInterval('P1M'));
+            $expectedDeadline->add($oneMonth);
         }
 
         $era = new Era();
         $era->setDeadlineAt(\DateTimeImmutable::createFromMutable($expectedDeadline));
-        $era->setName(DateTimeHelper::getMonthName($expectedDeadline, $translator->getLocale()));
+
+        $nextMonth = (clone $expectedDeadline)->add($oneMonth);
+        $era->setName(DateTimeHelper::getMonthName($nextMonth, $translator->getLocale()));
 
         return $era;
     }

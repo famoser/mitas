@@ -56,6 +56,18 @@ class EraEntry
     #[ORM\ManyToOne(targetEntity: Era::class, inversedBy: "entries")]
     private ?Era $era = null;
 
+    public static function copyPersistentFields(EraEntry $copyEntry): EraEntry
+    {
+        $self = new self();
+        $self->setFullName($copyEntry->getFullName());
+        $self->setEmail($copyEntry->getEmail());
+        $self->setWorkMode($copyEntry->getWorkMode());
+        $self->setTeam($copyEntry->getTeam());
+        $self->setGeneralAgreement($copyEntry->getGeneralAgreement());
+
+        return $self;
+    }
+
     public function getFullName(): ?string
     {
         return $this->fullName;

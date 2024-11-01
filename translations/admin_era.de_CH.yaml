@@ -2,9 +2,9 @@ index:
     description: 'Epoche verwalten'
 
 announce:
-    submit: "Einladung versenden"
-    success: "Einladungen wurden versandt"
-    danger: "Nicht alle Einladungen konnten versandt werden"
+    submit: "Anfragen versenden"
+    success: "Anfragen wurden versandt"
+    danger: "Nicht alle Anfragen konnten versandt werden"
 
 new:
     title: "Epoche erstellen"

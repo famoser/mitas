@@ -13,7 +13,21 @@
         {{ 'index.description'|trans }}
     </p>
 
-    <div class="mb-3">
+    <p class="mt-3">
+        <strong>{{ "Announced at"|trans({}, "entity_era") }}</strong>: {{ era.announcedAt|format_date_time }}
+        {{ components.show_yes_no(era.announcedAt) }} <br/>
+
+        <strong>{{ "Deadline at"|trans({}, "entity_era") }}</strong>: {{ era.deadlineAt|format_date }} <br/>
+        <strong>{{ "status.title"|trans({}, "entity_era") }}</strong>:
+        {% if not era.deadlinePassed %}
+            {{ "status.open"|trans({}, "entity_era") }}
+        {% else %}
+            {{ "status.closed"|trans({}, "entity_era") }}
+        {% endif %}
+        <br/>
+    </p>
+
+    <div class="mt-5 mb-3">
         <a class="btn btn-primary" href="{{ path('admin_era_entry_new', {'era': era.id}) }}">
             {{ "new.title"|trans({}, "admin_era_entry") }}
         </a>

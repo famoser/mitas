@@ -1,0 +1,14 @@
+index:
+    title: 'Monatsplanung'
+    description: "Monatsplanung: Bitte Ausnahmen erfassen"
+    hello: "Hallo"
+    welcome: 'Bitte trage Deine Freiwünsche und Abwesenheiten für %era% ein. Du kannst Deine Angaben bis zum %deadline% jederzeit anpassen.'
+
+    change_general_agreement: 'Setze Dich mit den Vorgesetzten in Verbindung, wenn du diese Angaben ändern möchtest .'
+
+    submit: "speichern"
+    success: 'Ausnahmen wurden erfasst'
+
+    thanks: 'Danke für deine Mithilfe. Bis zum %deadline% kannst du deine Angaben noch anpassen.'
+    deadline_passed: 'Nach Ablauf der Frist sind keine Änderungen mehr möglich.'
+

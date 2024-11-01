@@ -13,6 +13,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\IdTrait;
 use App\Entity\Traits\TimeTrait;
+use DateInterval;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -71,6 +72,17 @@ class Era
     public function getDeadlineAt(): ?\DateTimeImmutable
     {
         return $this->deadlineAt;
+    }
+
+    public function isDeadlinePassed(): bool
+    {
+        if (!$this->deadlineAt) {
+            return false;
+        }
+
+        $now = new \DateTime();
+        $cutoff = $this->deadlineAt->add(new DateInterval('P1D'));
+        return $cutoff < $now;
     }
 
     public function setDeadlineAt(?\DateTimeImmutable $deadlineAt): void

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'index.title'|trans }}{% endblock %}
+{% block description %}{{ 'index.description'|trans }}{% endblock %}
+
+{% trans_default_domain "reply" %}
+
+{% block body %}
+    <section class="container container-text py-5">
+        <h1>{{ 'index.hello'|trans }}, {{ entry.fullName }}</h1>
+        <p class="lead">
+            {{ 'index.description'|trans }}
+        </p>
+
+        {% if entry.era.deadlinePassed %}
+            <p class="alert alert-info">
+                {{ "index.deadline_passed"|trans }}
+            </p>
+        {% elseif entry.lastConfirmedAt %}
+            <p class="alert alert-success">
+                {{ "index.thanks"|trans({'%deadline%': entry.era.deadlineAt|format_date}) }}
+            </p>
+        {% endif %}
+
+        <p>
+            {{ 'index.welcome'|trans({'%era%': entry.era.name, '%deadline%': entry.era.deadlineAt|format_date}) }}
+        </p>
+
+        <p class="mt-5">
+            <strong>{{ "Work mode"|trans({}, "entity_era_entry") }}</strong>: {{ entry.workMode }} <br/>
+            <strong>{{ "Team"|trans({}, "entity_era_entry") }}</strong>: {{ entry.team }} <br/>
+            <strong>{{ "General agreement"|trans({}, "entity_era_entry") }}</strong>: {{ entry.generalAgreement }}
+
+            <small class="d-block mt-2 text-secondary">
+                {{ "index.change_general_agreement"|trans }}
+            </small>
+        </p>
+
+        <div class="mt-5">
+            {{ form(form) }}
+        </div>
+    </section>
+{% endblock %}

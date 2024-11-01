@@ -15,12 +15,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EraType extends AbstractType
 {
+    public const COPY_ERA_FIELD = 'copyEra';
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('name', TextType::class);
         $builder->add('deadlineAt', DateType::class, ['widget' => 'single_text', 'help' => 'help.deadline_at']);
 
-        $builder->add('copyEra', EntityType::class, [
+        $builder->add(self::COPY_ERA_FIELD, EntityType::class, [
             // looks for choices from this entity
             'class' => Era::class,
             'choice_label' => 'name',

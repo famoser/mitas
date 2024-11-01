@@ -12,10 +12,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkNotification;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -29,12 +29,17 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/login', name: 'login')]
-    public function requestLoginLink(NotifierInterface $notifier, MailerInterface $mailer, LoginLinkHandlerInterface $loginLinkHandler, ManagerRegistry $registry, TranslatorInterface $translator, UserRepository $userRepository, Request $request): Response
+    public function requestLoginLink(AuthenticationUtils $authenticationUtils, NotifierInterface $notifier, MailerInterface $mailer, LoginLinkHandlerInterface $loginLinkHandler, ManagerRegistry $registry, TranslatorInterface $translator, UserRepository $userRepository, Request $request): Response
     {
         $form = $this->createFormBuilder()
             ->add('email', EmailType::class, ['label' => 'login.form.email', 'translation_domain' => 'security'])
             ->add('submit', SubmitType::class, ['label' => 'login.form.submit', 'translation_domain' => 'security'])
             ->getForm();
+
+        if ($authenticationUtils->getLastAuthenticationError()) {
+            $message = $translator->trans("login.invalid_link", [], "security");
+            $this->addFlash('danger', $message);
+        }
 
         $form->handleRequest($request);
         $linkSent = false;

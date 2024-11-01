@@ -1,8 +1,10 @@
 exit_impersonation: 'Stop impersonate'
+logout: 'Logout'
 
 login:
     title: "Administrator-Login"
     description: "Login in den Administrationsbereich des Tools"
+    invalid_link: 'Der Login-Link ist nicht mehr gültig.'
     form:
         email: 'E-Mail'
         submit: 'Login-Link zusenden'

@@ -38,11 +38,11 @@
                     <td>{{ entry.lastReminderSent|format_date_time }}</td>
                     <td>
                     <span class="btn-group">
-                        <a class="btn btn-outline-primary"
+                        <a class="btn btn-outline-secondary"
                            href="{{ path('reply', {'entry': entry.id}) }}" target="_blank">
                             <i class="fas fa-link"></i>
                         </a>
-                        <a class="btn btn-outline-primary"
+                        <a class="btn btn-outline-secondary"
                            href="{{ path('admin_era_resend', {'era': era.id, 'entry': entry.id}) }}">
                             <i class="fas fa-envelope"></i>
                         </a>

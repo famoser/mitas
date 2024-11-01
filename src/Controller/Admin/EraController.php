@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Era;
 use App\Entity\EraEntry;
@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/admin/era')]
-class AdminEraController extends AbstractController
+class EraController extends AbstractController
 {
     #[Route('/new', name: 'admin_era_new')]
     public function new(Request $request, TranslatorInterface $translator, ManagerRegistry $registry): Response
@@ -33,6 +33,12 @@ class AdminEraController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             DoctrineHelper::persistAndFlush($registry, $era);
+
+            /** @var Era $copyEra */
+            $copyEra = $form->getData()[EraType::COPY_ERA_FIELD];
+            if ($copyEra) {
+                $this->copyFromEra($copyEra, $era, $registry);
+            }
 
             $message = $translator->trans('new.success', [], 'admin_era');
             $this->addFlash('success', $message);
@@ -213,5 +219,19 @@ class AdminEraController extends AbstractController
         }
 
         return $form->createView();
+    }
+
+    public function copyFromEra(Era $sourceEra, Era $targetEra, ManagerRegistry $registry): void
+    {
+        /** @var EraEntry[] $newEntries */
+        $newEntries = [];
+        foreach ($sourceEra->getEntries() as $copyEntry) {
+            $newEntry = EraEntry::copyPersistentFields($copyEntry);
+            $newEntry->setEra($targetEra);
+
+            $newEntries[] = $newEntry;
+        }
+
+        DoctrineHelper::persistAndFlush($registry, ...$newEntries);
     }
 }

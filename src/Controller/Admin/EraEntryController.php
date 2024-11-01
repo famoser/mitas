@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Era;
 use App\Entity\EraEntry;
-use App\Form\DateTimeHelper;
 use App\Form\DeleteType;
 use App\Form\EraEntryType;
 use App\Helper\DoctrineHelper;
@@ -18,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/admin/era/{era}/entry')]
-class AdminEraEntryController extends AbstractController
+class EraEntryController extends AbstractController
 {
     #[Route('/new', name: 'admin_era_entry_new')]
     public function new(Request $request, Era $era, TranslatorInterface $translator, ManagerRegistry $registry): Response

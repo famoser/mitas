@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Era;
 use App\Model\Breadcrumb;
@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/admin')]
-class AdminController extends AbstractController
+class IndexController extends AbstractController
 {
     #[Route('/', name: 'admin_index')]
     public function number(ManagerRegistry $registry, TranslatorInterface $translator): Response

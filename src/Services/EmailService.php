@@ -22,6 +22,11 @@ readonly class EmailService implements EmailServiceInterface
     {
         $subject = $this->translator->trans('announce_era.subject', [], 'emails');
 
+        if ($entry->getLastReminderSent()) {
+            $reminder = $this->translator->trans('reminder.subject', [], 'emails');
+            $subject = $reminder." ".$subject;
+        }
+
         $email = (new TemplatedEmail())
             ->to($entry->getEmail())
             ->subject($subject)

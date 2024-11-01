@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Era;
+use App\Entity\EraEntry;
 use App\Form\DateTimeHelper;
 use App\Form\DeleteType;
 use App\Form\EraType;
@@ -56,7 +57,6 @@ class AdminEraController extends AbstractController
         return $era;
     }
 
-
     #[Route('/{era}/view', name: 'admin_era_view')]
     public function view(Request $request, Era $era, TranslatorInterface $translator, ManagerRegistry $registry, EmailServiceInterface $emailService): Response
     {
@@ -67,6 +67,25 @@ class AdminEraController extends AbstractController
         ];
 
         return $this->render('admin/era/view.html.twig', $parameters);
+    }
+
+    #[Route('/{era}/resend/{entry}', name: 'admin_era_resend')]
+    public function resend(Era $era, EraEntry $entry, TranslatorInterface $translator, ManagerRegistry $registry, EmailServiceInterface $emailService): Response
+    {
+        // here no form token is used for a submission, but this is OK: entry ids are hard to guess
+
+        if ($emailService->announceEra($entry)) {
+            $entry->setLastReminderSent();
+            DoctrineHelper::persistAndFlush($registry, $entry);
+
+            $message = $translator->trans('resend.success', [], 'admin_era');
+            $this->addFlash('success', $message);
+        } else {
+            $message = $translator->trans('resend.danger', [], 'admin_era');
+            $this->addFlash('danger', $message);
+        }
+
+        return $this->redirectToRoute('admin_era_view', ['era' => $era->getId()]);
     }
 
     #[Route('/{era}/edit', name: 'admin_era_edit')]

@@ -21,3 +21,7 @@ remove:
     confirm: 'Soll wirklich die Epoche "%era%" entfernt werden, inklusive aller damit verbundenen Daten? Dieser Schritt kann nicht rückgängig gemacht werden.'
     submit: "entfernen"
     success: "Epoche entfernt"
+
+resend:
+    success: 'Einladung versandt'
+    danger: 'Einladung konnte nicht versandt werden'

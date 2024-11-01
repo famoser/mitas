@@ -52,7 +52,7 @@ class EraController extends AbstractController
     private function createDefaultEra(TranslatorInterface $translator): Era
     {
         $now = new \DateTime();
-        $expectedDeadline = (clone $now)->setDate((int)$now->format('Y'), (int)$now->format('m'), 15);
+        $expectedDeadline = (clone $now)->setDate((int) $now->format('Y'), (int) $now->format('m'), 15);
         if ($expectedDeadline < $now) {
             $expectedDeadline->add(new \DateInterval('P1M'));
         }
@@ -68,9 +68,9 @@ class EraController extends AbstractController
     public function view(Request $request, Era $era, TranslatorInterface $translator, ManagerRegistry $registry, EmailServiceInterface $emailService): Response
     {
         $parameters = [
-            "era" => $era,
+            'era' => $era,
             'breadcrumbs' => $this->getBreadcrumbs($translator),
-            'announce_form' => $this->announceForm($request, $era, $translator, $registry, $emailService)
+            'announce_form' => $this->announceForm($request, $era, $translator, $registry, $emailService),
         ];
 
         return $this->render('admin/era/view.html.twig', $parameters);
@@ -108,7 +108,7 @@ class EraController extends AbstractController
             $translator->trans('Team', [], 'entity_era_entry'),
             $translator->trans('General agreement', [], 'entity_era_entry'),
             $translator->trans('Time off request', [], 'entity_era_entry'),
-            $translator->trans('Absences', [], 'entity_era_entry')
+            $translator->trans('Absences', [], 'entity_era_entry'),
         ];
 
         $content = [];
@@ -166,7 +166,6 @@ class EraController extends AbstractController
 
         return $this->render('admin/era/remove.html.twig', ['form' => $form->createView(), 'era' => $era, 'breadcrumbs' => $this->getBreadcrumbs($translator)]);
     }
-
 
     /**
      * @return Breadcrumb[]

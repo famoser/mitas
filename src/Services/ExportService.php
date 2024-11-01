@@ -16,28 +16,24 @@ class ExportService implements ExportServiceInterface
         $spreadsheet = new Spreadsheet();
         $activeWorksheet = $spreadsheet->getActiveSheet();
 
-        for ($i = 0; $i < count($header); $i++) {
-            $coordinate = [$i+1, 1];
-            $activeWorksheet->getStyle($coordinate)->getFont()->setBold( true );
+        for ($i = 0; $i < count($header); ++$i) {
+            $coordinate = [$i + 1, 1];
+            $activeWorksheet->getStyle($coordinate)->getFont()->setBold(true);
             $activeWorksheet->setCellValue($coordinate, $header[$i]);
         }
 
-        for ($i = 0; $i < count($content); $i++) {
+        for ($i = 0; $i < count($content); ++$i) {
             $row = $content[$i];
-            for ($j = 0; $j < count($row); $j++) {
-                $activeWorksheet->setCellValue([$j+1, $i+2], $row[$j]);
+            for ($j = 0; $j < count($row); ++$j) {
+                $activeWorksheet->setCellValue([$j + 1, $i + 2], $row[$j]);
             }
         }
 
         $writer = IOFactory::createWriter($spreadsheet, IOFactory::WRITER_XLSX);
+
         return $this->createResponse($writer, $filename);
     }
 
-    /**
-     * @param IWriter $writer
-     * @param string $filename
-     * @return StreamedResponse
-     */
     public function createResponse(IWriter $writer, string $filename): StreamedResponse
     {
         $response = new StreamedResponse(
@@ -47,7 +43,7 @@ class ExportService implements ExportServiceInterface
         );
 
         $response->headers->set('Content-Type', 'application/vnd.ms-excel');
-        $response->headers->set('Content-Disposition', 'attachment;filename="' . $filename . '"');
+        $response->headers->set('Content-Disposition', 'attachment;filename="'.$filename.'"');
         $response->headers->set('Cache-Control', 'max-age=0');
 
         return $response;

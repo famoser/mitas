@@ -85,7 +85,6 @@ class EraEntryController extends AbstractController
         return $this->render('admin/era/entry/remove.html.twig', ['form' => $form->createView(), 'entry' => $entry, 'breadcrumbs' => $this->getBreadcrumbs($era, $translator)]);
     }
 
-
     /**
      * @return Breadcrumb[]
      */

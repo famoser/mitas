@@ -37,7 +37,7 @@ class SecurityController extends AbstractController
             ->getForm();
 
         if ($authenticationUtils->getLastAuthenticationError()) {
-            $message = $translator->trans("login.invalid_link", [], "security");
+            $message = $translator->trans('login.invalid_link', [], 'security');
             $this->addFlash('danger', $message);
         }
 
@@ -48,7 +48,7 @@ class SecurityController extends AbstractController
             $user = $userRepository->findOneBy(['email' => $email]);
 
             $isAdmin = $user && $user->isAdmin();
-            if (!$isAdmin && $userRepository->count() === 0) {
+            if (!$isAdmin && 0 === $userRepository->count()) {
                 $user = new User();
                 $user->setEmail($email);
                 $user->setIsAdmin(true);
@@ -58,11 +58,11 @@ class SecurityController extends AbstractController
             }
 
             if (!$isAdmin) {
-                $this->addFlash('danger', $translator->trans("login.danger.not_admin", [], "security"));
+                $this->addFlash('danger', $translator->trans('login.danger.not_admin', [], 'security'));
             } else {
                 $loginLinkDetails = $loginLinkHandler->createLoginLink($user);
 
-                $subject = $translator->trans("login.notification.subject", [], "security");
+                $subject = $translator->trans('login.notification.subject', [], 'security');
                 $notification = new LoginLinkNotification($loginLinkDetails, $subject);
                 $recipient = new Recipient($user->getEmail());
                 $notifier->send($notification, $recipient);

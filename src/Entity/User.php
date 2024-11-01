@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use App\Entity\Traits\IdTrait;
@@ -43,7 +44,7 @@ class User implements UserInterface
     }
 
     /**
-     * The public representation of the user (e.g. a username, an email address, etc.)
+     * The public representation of the user (e.g. a username, an email address, etc.).
      *
      * @see UserInterface
      */
@@ -66,6 +67,7 @@ class User implements UserInterface
 
         return array_unique($roles);
     }
+
     /**
      * @see UserInterface
      */

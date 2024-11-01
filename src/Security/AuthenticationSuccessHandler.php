@@ -2,7 +2,6 @@
 
 namespace App\Security;
 
-
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,8 +14,8 @@ readonly class AuthenticationSuccessHandler implements AuthenticationSuccessHand
 {
     public function __construct(private RouterInterface $router)
     {
-
     }
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token): Response
     {
         /** @var User $user */

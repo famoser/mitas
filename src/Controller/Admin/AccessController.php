@@ -2,11 +2,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Era;
-use App\Entity\EraEntry;
 use App\Entity\User;
 use App\Form\DeleteType;
-use App\Form\EraEntryType;
 use App\Helper\DoctrineHelper;
 use App\Model\Breadcrumb;
 use Doctrine\Persistence\ManagerRegistry;
@@ -71,7 +68,6 @@ class AccessController extends AbstractController
 
         return $this->render('admin/access/remove.html.twig', ['form' => $form->createView(), 'admin' => $admin, 'breadcrumbs' => $this->getBreadcrumbs($translator)]);
     }
-
 
     /**
      * @return Breadcrumb[]

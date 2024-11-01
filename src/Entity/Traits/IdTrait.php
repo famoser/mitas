@@ -21,8 +21,7 @@ use Symfony\Bridge\Doctrine\Types\UuidType;
 trait IdTrait
 {
     /**
-     * @var string|null
-     * will be null when not inserted into the db yet
+     * @var string|null will be null when not inserted into the db yet
      */
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]

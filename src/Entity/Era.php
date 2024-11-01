@@ -13,7 +13,6 @@ namespace App\Entity;
 
 use App\Entity\Traits\IdTrait;
 use App\Entity\Traits\TimeTrait;
-use DateInterval;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -41,7 +40,7 @@ class Era
     /**
      * @var Collection<string, EraEntry>
      */
-    #[ORM\OneToMany(targetEntity: EraEntry::class, mappedBy: "era")]
+    #[ORM\OneToMany(targetEntity: EraEntry::class, mappedBy: 'era')]
     private Collection $entries;
 
     public function __construct()
@@ -81,7 +80,8 @@ class Era
         }
 
         $now = new \DateTime();
-        $cutoff = $this->deadlineAt->add(new DateInterval('P1D'));
+        $cutoff = $this->deadlineAt->add(new \DateInterval('P1D'));
+
         return $cutoff < $now;
     }
 

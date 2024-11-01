@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace App\Extension;
 
-use DateTimeInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -32,18 +31,18 @@ class TwigExtension extends AbstractExtension
         ];
     }
 
-    public function formatDateFilter(?DateTimeInterface $date): string
+    public function formatDateFilter(?\DateTimeInterface $date): string
     {
-        if ($date instanceof DateTimeInterface) {
+        if ($date instanceof \DateTimeInterface) {
             return $date->format('d.m.Y');
         }
 
         return '-';
     }
 
-    public function formatDateTimeFilter(?DateTimeInterface $date): string
+    public function formatDateTimeFilter(?\DateTimeInterface $date): string
     {
-        if ($date instanceof DateTimeInterface) {
+        if ($date instanceof \DateTimeInterface) {
             return $date->format('d.m.Y H:i');
         }
 

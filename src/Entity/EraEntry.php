@@ -53,7 +53,7 @@ class EraEntry
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $lastConfirmedAt = null;
 
-    #[ORM\ManyToOne(targetEntity: Era::class, inversedBy: "entries")]
+    #[ORM\ManyToOne(targetEntity: Era::class, inversedBy: 'entries')]
     private ?Era $era = null;
 
     public static function copyPersistentFields(EraEntry $copyEntry): EraEntry

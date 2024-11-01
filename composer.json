@@ -1,5 +1,7 @@
 {
-    "type": "mitas",
+    "name": "famoser/mitas",
+    "description": "Ask employees for their availability next month to plan shifts.",
+    "type": "project",
     "license": "MIT",
     "minimum-stability": "stable",
     "prefer-stable": true,

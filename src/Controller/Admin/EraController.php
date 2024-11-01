@@ -34,7 +34,7 @@ class EraController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             DoctrineHelper::persistAndFlush($registry, $era);
 
-            /** @var Era $copyEra */
+            /** @var Era|null $copyEra */
             $copyEra = $form->getData()[EraType::COPY_ERA_FIELD];
             if ($copyEra) {
                 $this->copyFromEra($copyEra, $era, $registry);
@@ -52,7 +52,7 @@ class EraController extends AbstractController
     private function createDefaultEra(TranslatorInterface $translator): Era
     {
         $now = new \DateTime();
-        $expectedDeadline = (clone $now)->setDate($now->format('Y'), $now->format('m'), 15);
+        $expectedDeadline = (clone $now)->setDate((int)$now->format('Y'), (int)$now->format('m'), 15);
         if ($expectedDeadline < $now) {
             $expectedDeadline->add(new \DateInterval('P1M'));
         }

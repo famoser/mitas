@@ -35,7 +35,7 @@ class Era
     private ?\DateTimeImmutable $deadlineAt = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    private ?\DateTimeImmutable $lastReminderSent = null;
+    private ?\DateTimeImmutable $announcedAt = null;
 
     /**
      * @var Collection<string, EraEntry>
@@ -58,14 +58,14 @@ class Era
         $this->name = $name;
     }
 
-    public function getLastReminderSent(): ?\DateTimeImmutable
+    public function getAnnouncedAt(): ?\DateTimeImmutable
     {
-        return $this->lastReminderSent;
+        return $this->announcedAt;
     }
 
-    public function setLastReminderSent(?\DateTimeImmutable $lastReminderSent): void
+    public function setAnnouncedAt(): void
     {
-        $this->lastReminderSent = $lastReminderSent;
+        $this->announcedAt = new \DateTimeImmutable();
     }
 
     public function getDeadlineAt(): ?\DateTimeImmutable

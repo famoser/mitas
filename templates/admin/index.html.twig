@@ -5,6 +5,8 @@
 
 {% trans_default_domain "admin" %}
 
+{% import "shared/components.html.twig" as components %}
+
 {% block body_admin %}
     <h1>{{ 'index.title'|trans }}</h1>
     <p class="lead">
@@ -21,8 +23,9 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>{{ "Name"|trans({}, 'entity_era') }}</th>
+                <th>{{ "entity.title"|trans({}, 'entity_era') }}</th>
                 <th>{{ "Deadline at"|trans({}, 'entity_era') }}</th>
+                <th>{{ "is_announced"|trans({}, 'entity_era') }}</th>
                 <th class="w-minimal"></th>
             </tr>
             </thead>
@@ -35,6 +38,9 @@
                         </a>
                     </td>
                     <td>{{ era.deadlineAt|format_date }}</td>
+                    <td>
+                        {{ components.show_yes_no(era.announcedAt) }}
+                    </td>
                     <td>
                     <span class="btn-group">
                         <a class="btn btn-outline-primary" href="{{ path('admin_era_edit', {'era': era.id}) }}">

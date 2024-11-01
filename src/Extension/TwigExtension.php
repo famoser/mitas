@@ -28,6 +28,7 @@ class TwigExtension extends AbstractExtension
     {
         return [
             new TwigFilter('format_date', [$this, 'formatDateFilter']),
+            new TwigFilter('format_date_time', [$this, 'formatDateTimeFilter']),
         ];
     }
 
@@ -35,6 +36,15 @@ class TwigExtension extends AbstractExtension
     {
         if ($date instanceof DateTimeInterface) {
             return $date->format('d.m.Y');
+        }
+
+        return '-';
+    }
+
+    public function formatDateTimeFilter(?DateTimeInterface $date): string
+    {
+        if ($date instanceof DateTimeInterface) {
+            return $date->format('d.m.Y H:i');
         }
 
         return '-';

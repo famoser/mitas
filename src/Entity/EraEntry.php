@@ -105,9 +105,9 @@ class EraEntry
         return $this->lastReminderSent;
     }
 
-    public function setLastReminderSent(?\DateTimeImmutable $lastReminderSent): void
+    public function setLastReminderSent(): void
     {
-        $this->lastReminderSent = $lastReminderSent;
+        $this->lastReminderSent = new \DateTimeImmutable();
     }
 
     public function getLastConfirmedAt(): ?\DateTimeImmutable

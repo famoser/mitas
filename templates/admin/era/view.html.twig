@@ -21,8 +21,9 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>{{ "Full name"|trans({}, 'entity_era_entry') }}</th>
+                <th>{{ "entity.title"|trans({}, 'entity_era_entry') }}</th>
                 <th>{{ "Email"|trans({}, 'entity_era_entry') }}</th>
+                <th>{{ "Last reminder sent"|trans({}, 'entity_era_entry') }}</th>
                 <th class="w-minimal"></th>
             </tr>
             </thead>
@@ -33,6 +34,7 @@
                         {{ entry.fullName }}
                     </td>
                     <td>{{ entry.email }}</td>
+                    <td>{{ entry.lastReminderSent|format_date_time }}</td>
                     <td>
                     <span class="btn-group">
                         <a class="btn btn-outline-primary"
@@ -49,5 +51,9 @@
             {% endfor %}
             </tbody>
         </table>
+    {% endif %}
+
+    {% if announce_form %}
+        {{ form(announce_form) }}
     {% endif %}
 {% endblock %}

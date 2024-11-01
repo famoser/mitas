@@ -1,0 +1,11 @@
+{% macro show_yes_no(value) %}
+    {% if value %}
+        <span class="text-success">
+            <i class="fas fa-check"></i>
+        </span>
+    {% else %}
+        <span class="text-danger">
+            <i class="fas fa-xmark"></i>
+        </span>
+    {% endif %}
+{% endmacro %}

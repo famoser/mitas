@@ -8,9 +8,11 @@ use App\Form\DeleteType;
 use App\Form\EraType;
 use App\Helper\DoctrineHelper;
 use App\Model\Breadcrumb;
+use App\Services\Interfaces\EmailServiceInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -56,9 +58,15 @@ class AdminEraController extends AbstractController
 
 
     #[Route('/{era}/view', name: 'admin_era_view')]
-    public function view(Era $era, TranslatorInterface $translator): Response
+    public function view(Request $request, Era $era, TranslatorInterface $translator, ManagerRegistry $registry, EmailServiceInterface $emailService): Response
     {
-        return $this->render('admin/era/view.html.twig', ["era" => $era, 'breadcrumbs' => $this->getBreadcrumbs($translator)]);
+        $parameters = [
+            "era" => $era,
+            'breadcrumbs' => $this->getBreadcrumbs($translator),
+            'announce_form' => $this->announceForm($request, $era, $translator, $registry, $emailService)
+        ];
+
+        return $this->render('admin/era/view.html.twig', $parameters);
     }
 
     #[Route('/{era}/edit', name: 'admin_era_edit')]
@@ -112,5 +120,44 @@ class AdminEraController extends AbstractController
             ),
             new Breadcrumb($translator->trans('entity.title', [], 'entity_era')),
         ];
+    }
+
+    private function announceForm(Request $request, Era $era, TranslatorInterface $translator, ManagerRegistry $registry, EmailServiceInterface $emailService): ?FormView
+    {
+        if ($era->getAnnouncedAt()) {
+            return null;
+        }
+
+        $form = $this->createFormBuilder()
+            ->add('send', SubmitType::class, ['label' => 'announce.submit', 'translation_domain' => 'admin_era'])
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $allSuccessful = true;
+            foreach ($era->getEntries() as $entry) {
+                if ($emailService->announceEra($entry)) {
+                    $entry->setLastReminderSent();
+                    DoctrineHelper::persistAndFlush($registry, $entry);
+                } else {
+                    $allSuccessful = false;
+                }
+            }
+
+            $era->setAnnouncedAt();
+            DoctrineHelper::persistAndFlush($registry, $era);
+
+            if ($allSuccessful) {
+                $message = $translator->trans('announce.success', [], 'admin_era');
+                $this->addFlash('success', $message);
+            } else {
+                $message = $translator->trans('announce.danger', [], 'admin_era');
+                $this->addFlash('danger', $message);
+            }
+
+            return null;
+        }
+
+        return $form->createView();
     }
 }

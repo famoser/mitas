@@ -4,3 +4,7 @@ index:
     welcome: 'Mitas hilft bei der Berücksichtigung der Mitarbeiterwünsche bei der Monatsplanung. Bevor eine Monatsplanung angegangen wird, bekommt jede:r Mitarbeiter:in eine E-Mail, um die Wünsche zu platzieren. Bei der Planung werden diese dann so gut es geht berücksichtigt. Danke für Deine Mithilfe, in dem du auf diese E-Mails reagierst.'
     created_by: "Erstellt von"
     open_source: "Open Source auf"
+error:
+    title: 'Fehler'
+    description: 'Fehler bei der Ausführung der Anfrage'
+    help: 'Bei der Ausführung der Anfrage ist ein Fehler aufgetreten. Bitte versuche es zu einem späteren Zeitpunkt noch einmal. Falls der Fehler bestehen bleibt, wende Dich bitte an den Support. Wir entschuldigen uns für die Umstände.'

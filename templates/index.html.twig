@@ -21,10 +21,18 @@
             {{ 'index.open_source'|trans }} <a href="https://github.com/famoser/mitas" target="_blank">famoser/mitas</a>.
         </p>
 
-        <p>
-            <a href="{{ path('login') }}">
-                {{ "login.title"|trans({}, "security") }}
-            </a>
-        </p>
+        {% if is_granted('ROLE_ADMIN') %}
+            <p>
+                <a href="{{ path('admin_index') }}">
+                    {{ "index.title"|trans({}, "admin") }}
+                </a>
+            </p>
+        {% else %}
+            <p>
+                <a href="{{ path('login') }}">
+                    {{ "login.title"|trans({}, "security") }}
+                </a>
+            </p>
+        {% endif %}
     </section>
 {% endblock %}

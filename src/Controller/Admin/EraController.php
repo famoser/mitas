@@ -35,7 +35,7 @@ class EraController extends AbstractController
             DoctrineHelper::persistAndFlush($registry, $era);
 
             /** @var Era|null $copyEra */
-            $copyEra = $form->getData()[EraType::COPY_ERA_FIELD];
+            $copyEra = $form->get(EraType::COPY_ERA_FIELD)->getData();
             if ($copyEra) {
                 $this->copyFromEra($copyEra, $era, $registry);
             }

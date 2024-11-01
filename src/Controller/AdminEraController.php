@@ -178,7 +178,7 @@ class AdminEraController extends AbstractController
 
     private function announceForm(Request $request, Era $era, TranslatorInterface $translator, ManagerRegistry $registry, EmailServiceInterface $emailService): ?FormView
     {
-        if ($era->getAnnouncedAt()) {
+        if ($era->getAnnouncedAt() || $era->isDeadlinePassed()) {
             return null;
         }
 

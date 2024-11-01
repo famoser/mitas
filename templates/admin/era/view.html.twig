@@ -28,7 +28,8 @@
     </p>
 
     <div class="mt-5 mb-3">
-        <a class="btn btn-primary" href="{{ path('admin_era_entry_new', {'era': era.id}) }}">
+        <a class="btn btn{% if era.deadlinePassed %}-outline{% endif %}-primary"
+           href="{{ path('admin_era_entry_new', {'era': era.id}) }}">
             {{ "new.title"|trans({}, "admin_era_entry") }}
         </a>
     </div>
@@ -62,10 +63,12 @@
                            href="{{ path('reply', {'entry': entry.id}) }}" target="_blank">
                             <i class="fas fa-link"></i>
                         </a>
-                        <a class="btn btn-outline-secondary"
-                           href="{{ path('admin_era_resend', {'era': era.id, 'entry': entry.id}) }}">
+                        {% if not era.deadlinePassed %}
+                            <a class="btn btn-outline-secondary"
+                               href="{{ path('admin_era_resend', {'era': era.id, 'entry': entry.id}) }}">
                             <i class="fas fa-envelope"></i>
                         </a>
+                        {% endif %}
                     </span>
                     </td>
                     <td>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "759a7c4032ff0f99e9882ef0987db3ec",
+    "content-hash": "a67f9d0e70ce20d1003c5afe86583337",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1301,16 +1301,16 @@
         },
         {
             "name": "famoser/agnes",
-            "version": "v4.3.1",
+            "version": "v4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/famoser/agnes.git",
-                "reference": "b5adf2e355e4573d1af6b5a95dc1021bfad3e7d0"
+                "reference": "b1e7a32b38943e1f9bc56f50e53292e1f0378571"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/famoser/agnes/zipball/b5adf2e355e4573d1af6b5a95dc1021bfad3e7d0",
-                "reference": "b5adf2e355e4573d1af6b5a95dc1021bfad3e7d0",
+                "url": "https://api.github.com/repos/famoser/agnes/zipball/b1e7a32b38943e1f9bc56f50e53292e1f0378571",
+                "reference": "b1e7a32b38943e1f9bc56f50e53292e1f0378571",
                 "shasum": ""
             },
             "require": {
@@ -1362,7 +1362,7 @@
                 "issues": "https://github.com/famoser/agnes/issues",
                 "source": "https://github.com/famoser/agnes"
             },
-            "time": "2024-07-29T16:19:44+00:00"
+            "time": "2024-11-01T10:52:55+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -12167,7 +12167,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -12175,6 +12175,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

@@ -25,3 +25,6 @@ remove:
 resend:
     success: 'Einladung versandt'
     danger: 'Einladung konnte nicht versandt werden'
+
+export:
+    title: 'Exportieren'

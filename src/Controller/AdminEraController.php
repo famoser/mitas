@@ -10,6 +10,7 @@ use App\Form\EraType;
 use App\Helper\DoctrineHelper;
 use App\Model\Breadcrumb;
 use App\Services\Interfaces\EmailServiceInterface;
+use App\Services\Interfaces\ExportServiceInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -86,6 +87,40 @@ class AdminEraController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_era_view', ['era' => $era->getId()]);
+    }
+
+    #[Route('/{era}/export', name: 'admin_era_export')]
+    public function export(Era $era, TranslatorInterface $translator, ExportServiceInterface $exportService): Response
+    {
+        $filenameUnsafe = (new \DateTime())->format('Y.m.d-Hi-').$era->getName();
+        $filename = preg_replace('/[^a-zA-Z0-9_-]+/', '_', $filenameUnsafe).'.xlsx';
+
+        $header = [
+            $translator->trans('Full name', [], 'entity_era_entry'),
+            $translator->trans('Email', [], 'entity_era_entry'),
+            $translator->trans('Work mode', [], 'entity_era_entry'),
+            $translator->trans('Team', [], 'entity_era_entry'),
+            $translator->trans('General agreement', [], 'entity_era_entry'),
+            $translator->trans('Time off request', [], 'entity_era_entry'),
+            $translator->trans('Absences', [], 'entity_era_entry')
+        ];
+
+        $content = [];
+        foreach ($era->getEntries() as $entry) {
+            $row = [
+                $entry->getFullName(),
+                $entry->getEmail(),
+                $entry->getWorkMode(),
+                $entry->getTeam(),
+                $entry->getGeneralAgreement(),
+                $entry->getTimeOffRequests(),
+                $entry->getAbsences(),
+            ];
+
+            $content[] = $row;
+        }
+
+        return $exportService->exportAsExcel($filename, $header, $content);
     }
 
     #[Route('/{era}/edit', name: 'admin_era_edit')]

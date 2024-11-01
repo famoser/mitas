@@ -5,6 +5,8 @@
 
 {% trans_default_domain "admin_era" %}
 
+{% import "shared/components.html.twig" as components %}
+
 {% block body_admin %}
     <h1>{{ era.name }}</h1>
     <p class="lead">
@@ -24,6 +26,7 @@
                 <th>{{ "entity.title"|trans({}, 'entity_era_entry') }}</th>
                 <th>{{ "Email"|trans({}, 'entity_era_entry') }}</th>
                 <th>{{ "Last reminder sent"|trans({}, 'entity_era_entry') }}</th>
+                <th>{{ "is_confirmed"|trans({}, 'entity_era_entry') }}</th>
                 <th class="w-minimal pe-2"></th>
                 <th class="w-minimal"></th>
             </tr>
@@ -36,6 +39,9 @@
                     </td>
                     <td>{{ entry.email }}</td>
                     <td>{{ entry.lastReminderSent|format_date_time }}</td>
+                    <td>
+                        {{ components.show_yes_no(entry.lastConfirmedAt) }}
+                    </td>
                     <td>
                     <span class="btn-group">
                         <a class="btn btn-outline-secondary"
@@ -67,6 +73,17 @@
     {% endif %}
 
     {% if announce_form %}
-        {{ form(announce_form) }}
+        <div class="mt-5">
+            {{ form(announce_form) }}
+        </div>
+    {% endif %}
+
+    {% if era.announcedAt %}
+        <div class="mt-5">
+            <a class="btn btn{% if not era.deadlinePassed %}-outline{% endif %}-primary"
+               href="{{ path('admin_era_export', {'era': era.id}) }}">
+                {{ "export.title"|trans }}
+            </a>
+        </div>
     {% endif %}
 {% endblock %}

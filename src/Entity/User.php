@@ -20,11 +20,6 @@ class User implements UserInterface
     #[ORM\Column(type: 'boolean')]
     private bool $isAdmin = false;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getEmail(): ?string
     {
         return $this->email;

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Era;
+use App\Entity\User;
 use App\Model\Breadcrumb;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,10 @@ class IndexController extends AbstractController
         $repository = $registry->getRepository(Era::class);
         $eras = $repository->findBy([], ['deadlineAt' => 'DESC']);
 
-        return $this->render('admin/index.html.twig', ['breadcrumbs' => $this->getBreadcrumbs($translator), 'eras' => $eras]);
+        $repository = $registry->getRepository(User::class);
+        $admins = $repository->findBy(['isAdmin' => true], ['email' => 'ASC']);
+
+        return $this->render('admin/index.html.twig', ['breadcrumbs' => $this->getBreadcrumbs($translator), 'eras' => $eras, 'admins' => $admins]);
     }
 
     /**

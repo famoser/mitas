@@ -1,0 +1,13 @@
+title: Zugriff
+
+new:
+    title: "Administrator:in hinzufügen"
+    email: 'E-Mail'
+    submit: "erstellen"
+    success: "Administrator:in hinzugefügt"
+
+remove:
+    title: "Administrator:in entfernen"
+    confirm: 'Soll wirklich "%email%" entfernt werden? Danach kann diese Person sich nicht mehr in den Administrations-Bereich einloggen.'
+    submit: "entfernen"
+    success: "Administrator:in entfernt"

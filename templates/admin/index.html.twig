@@ -56,4 +56,17 @@
             </tbody>
         </table>
     {% endif %}
+
+    <p class="mt-5">
+        <strong>{{ "title"|trans({}, "admin_access") }}</strong>:
+        {% for admin in admins %}
+            {{ admin.email }}
+            <small>
+            <a class="text-danger" href="{{ path('admin_access_remove', {'admin': admin.id}) }}">
+                <i class="fas fa-trash"></i>
+            </a>
+            </small>,
+        {% endfor %}
+        <a href="{{ path('admin_access_new') }}">{{ "new.title"|trans({}, 'admin_access') }}</a>
+    </p>
 {% endblock %}

@@ -37,6 +37,9 @@ class Era
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $announcedAt = null;
 
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $reminderSentAt = null;
+
     /**
      * @var Collection<string, EraEntry>
      */
@@ -57,20 +60,21 @@ class Era
     {
         $this->name = $name;
     }
-
-    public function getAnnouncedAt(): ?\DateTimeImmutable
-    {
-        return $this->announcedAt;
-    }
-
-    public function setAnnouncedAt(): void
-    {
-        $this->announcedAt = new \DateTimeImmutable();
-    }
-
     public function getDeadlineAt(): ?\DateTimeImmutable
     {
         return $this->deadlineAt;
+    }
+
+    public function isDeadlineToday(): bool
+    {
+        if (!$this->deadlineAt) {
+            return false;
+        }
+
+        $now = new \DateTime();
+        $cutoff = $this->deadlineAt->add(new \DateInterval('P1D'));
+
+        return $this->deadlineAt < $now && $now < $cutoff;
     }
 
     public function isDeadlinePassed(): bool
@@ -89,6 +93,27 @@ class Era
     {
         $this->deadlineAt = $deadlineAt;
     }
+
+    public function getAnnouncedAt(): ?\DateTimeImmutable
+    {
+        return $this->announcedAt;
+    }
+
+    public function setAnnouncedAt(): void
+    {
+        $this->announcedAt = new \DateTimeImmutable();
+    }
+
+    public function getReminderSentAt(): ?\DateTimeImmutable
+    {
+        return $this->reminderSentAt;
+    }
+
+    public function setReminderSentAt(): void
+    {
+        $this->reminderSentAt = new \DateTimeImmutable();
+    }
+
 
     /**
      * @return Collection<string, EraEntry>

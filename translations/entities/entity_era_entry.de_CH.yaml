@@ -8,9 +8,18 @@ Work mode: "Arbeitsmodus"
 Team: "Team(s)"
 General agreement: "Grundsätzliche Abmachung"
 
+Vacations in era: 'Ferien eingetragen'
 Time off requests: 'Freiwünsche'
 Absences: 'Absenzen'
+Comments: 'Sonstiges'
 
 Last reminder sent: 'Letzter Versand'
 
 is_confirmed: 'Bestätigt'
+
+help:
+    vacations_in_era: "Bereits abgesprochene Ferien im Zeitraum?"
+    time_off_requests: "Umzug, familiäre Angelegenheiten, ..."
+    absences: "Ärztliche Behandlungen, Forbildungen, ..."
+    comments: "Möchtest du uns sonst etwas zur Monatsplanung mitteilen?"
+

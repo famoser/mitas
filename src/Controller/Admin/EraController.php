@@ -111,8 +111,10 @@ class EraController extends AbstractController
             $translator->trans('Work mode', [], 'entity_era_entry'),
             $translator->trans('Team', [], 'entity_era_entry'),
             $translator->trans('General agreement', [], 'entity_era_entry'),
+            $translator->trans('Vacations in era', [], 'entity_era_entry'),
             $translator->trans('Time off request', [], 'entity_era_entry'),
             $translator->trans('Absences', [], 'entity_era_entry'),
+            $translator->trans('Comments', [], 'entity_era_entry'),
         ];
 
         $content = [];
@@ -123,8 +125,10 @@ class EraController extends AbstractController
                 $entry->getWorkMode(),
                 $entry->getTeam(),
                 $entry->getGeneralAgreement(),
+                $entry->getVacationsInEra() ? 1 : 0,
                 $entry->getTimeOffRequests(),
                 $entry->getAbsences(),
+                $entry->getComments(),
             ];
 
             $content[] = $row;

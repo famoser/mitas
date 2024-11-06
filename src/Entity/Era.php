@@ -60,6 +60,7 @@ class Era
     {
         $this->name = $name;
     }
+
     public function getDeadlineAt(): ?\DateTimeImmutable
     {
         return $this->deadlineAt;
@@ -113,7 +114,6 @@ class Era
     {
         $this->reminderSentAt = new \DateTimeImmutable();
     }
-
 
     /**
      * @return Collection<string, EraEntry>

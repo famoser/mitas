@@ -10,6 +10,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EraType extends AbstractType
@@ -21,18 +23,28 @@ class EraType extends AbstractType
         $builder->add('name', TextType::class);
         $builder->add('deadlineAt', DateType::class, ['widget' => 'single_text', 'help' => 'help.deadline_at']);
 
-        $builder->add(self::COPY_ERA_FIELD, EntityType::class, [
-            // looks for choices from this entity
-            'class' => Era::class,
-            'choice_label' => 'name',
-            'query_builder' => function (EntityRepository $er): QueryBuilder {
-                /* @var EntityRepository<Era> $er */
-                return $er->createQueryBuilder('e')
-                    ->orderBy('e.deadlineAt', 'DESC');
-            },
-            'mapped' => false,
-            'required' => false,
-        ]);
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
+            /** @var Era $era */
+            $era = $event->getData();
+            if ($era->getId()) {
+                return;
+            }
+
+            $form = $event->getForm();
+            $form->add(self::COPY_ERA_FIELD, EntityType::class, [
+                // looks for choices from this entity
+                'class' => Era::class,
+                'choice_label' => 'name',
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    /* @var EntityRepository<Era> $er */
+                    return $er->createQueryBuilder('e')
+                        ->orderBy('e.deadlineAt', 'DESC');
+                },
+                'mapped' => false,
+                'required' => false,
+            ]);
+        });
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

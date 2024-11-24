@@ -43,7 +43,7 @@ class EraController extends AbstractController
             $message = $translator->trans('new.success', [], 'admin_era');
             $this->addFlash('success', $message);
 
-            return $this->redirect($this->generateUrl('admin_era_view', ['era' => $era->getId()]));
+            return $this->redirectToRoute('admin_era_view', ['era' => $era->getId()]);
         }
 
         return $this->render('admin/era/new.html.twig', ['form' => $form->createView(), 'breadcrumbs' => $this->getBreadcrumbs($translator)]);

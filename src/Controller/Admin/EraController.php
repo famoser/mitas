@@ -112,7 +112,7 @@ class EraController extends AbstractController
             $translator->trans('Team', [], 'entity_era_entry'),
             $translator->trans('General agreement', [], 'entity_era_entry'),
             $translator->trans('Vacations in era', [], 'entity_era_entry'),
-            $translator->trans('Time off request', [], 'entity_era_entry'),
+            $translator->trans('Time off requests', [], 'entity_era_entry'),
             $translator->trans('Absences', [], 'entity_era_entry'),
             $translator->trans('Comments', [], 'entity_era_entry'),
         ];

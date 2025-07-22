@@ -29,7 +29,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/login', name: 'login')]
-    public function requestLoginLink(AuthenticationUtils $authenticationUtils, NotifierInterface $notifier, MailerInterface $mailer, LoginLinkHandlerInterface $loginLinkHandler, ManagerRegistry $registry, TranslatorInterface $translator, UserRepository $userRepository, Request $request): Response
+    public function requestLoginLink(AuthenticationUtils $authenticationUtils, NotifierInterface $notifier, LoginLinkHandlerInterface $loginLinkHandler, ManagerRegistry $registry, TranslatorInterface $translator, UserRepository $userRepository, Request $request): Response
     {
         $form = $this->createFormBuilder()
             ->add('email', EmailType::class, ['label' => 'login.form.email', 'translation_domain' => 'security'])

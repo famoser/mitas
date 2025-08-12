@@ -85,7 +85,7 @@ class Era
         }
 
         $now = new \DateTime();
-        $cutoff = $this->deadlineAt->add(new \DateInterval('P1D'));
+        $cutoff = $this->deadlineAt->add(new \DateInterval('P1DT2H'));
 
         return $cutoff < $now;
     }

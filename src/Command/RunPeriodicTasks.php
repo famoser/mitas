@@ -86,7 +86,7 @@ class RunPeriodicTasks extends Command
                 DoctrineHelper::persistAndFlush($this->registry, $era);
             }
 
-            $message = 'Reminders sent for '.$era->getName().'. Successful: '.($allSuccessful ? 'yes' : 'no');
+            $message = 'Reminders sent for ' . $era->getName() . '. Successful: ' . ($allSuccessful ? 'yes' : 'no');
             $this->logger->info($message);
             $output->writeln($message);
         }

@@ -102,8 +102,8 @@ class EraController extends AbstractController
     #[Route('/{era}/export', name: 'admin_era_export')]
     public function export(Era $era, TranslatorInterface $translator, ExportServiceInterface $exportService): Response
     {
-        $filenameUnsafe = (new \DateTime())->format('Y.m.d-Hi-').$era->getName();
-        $filename = preg_replace('/[^a-zA-Z0-9_-]+/', '_', $filenameUnsafe).'.xlsx';
+        $filenameUnsafe = (new \DateTime())->format('Y.m.d-Hi-') . $era->getName();
+        $filename = preg_replace('/[^a-zA-Z0-9_-]+/', '_', $filenameUnsafe) . '.xlsx';
 
         $header = [
             $translator->trans('Full name', [], 'entity_era_entry'),

@@ -105,9 +105,9 @@
         }
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.64",
         "phpstan/phpstan": "^1.12",
         "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^4.0",
         "symfony/browser-kit": "^7",
         "symfony/css-selector": "^7",
         "symfony/debug-bundle": "^7",

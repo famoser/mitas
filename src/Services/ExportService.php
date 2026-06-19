@@ -43,7 +43,7 @@ class ExportService implements ExportServiceInterface
         );
 
         $response->headers->set('Content-Type', 'application/vnd.ms-excel');
-        $response->headers->set('Content-Disposition', 'attachment;filename="'.$filename.'"');
+        $response->headers->set('Content-Disposition', 'attachment;filename="' . $filename . '"');
         $response->headers->set('Cache-Control', 'max-age=0');
 
         return $response;

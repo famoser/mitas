@@ -23,7 +23,7 @@ readonly class EmailService implements EmailServiceInterface
 
         if ($entry->getLastReminderSent()) {
             $reminder = $this->translator->trans('reminder.subject', [], 'emails');
-            $subject = $reminder.' '.$subject;
+            $subject = $reminder . ' ' . $subject;
         }
 
         $email = (new TemplatedEmail())

@@ -1,18 +1,4 @@
 {
-    "devDependencies": {
-        "@babel/core": "^7.17.0",
-        "@babel/preset-env": "^7.16.0",
-        "@hotwired/stimulus": "^3.0.0",
-        "@hotwired/turbo": "^7.1.1 || ^8.0",
-        "@symfony/stimulus-bridge": "^3.2.0",
-        "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
-        "@symfony/webpack-encore": "^5.0.0",
-        "core-js": "^3.38.0",
-        "regenerator-runtime": "^0.13.9",
-        "webpack": "^5.74.0",
-        "webpack-cli": "^5.1.0",
-        "webpack-dev-server": "^5.1.0"
-    },
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
@@ -26,5 +12,24 @@
         "bootstrap": "^5.3.3",
         "sass": "^1.80.5",
         "sass-loader": "^16.0.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.17.0",
+        "@babel/preset-env": "^7.16.0",
+        "@hotwired/stimulus": "^3.0.0",
+        "@hotwired/turbo": "^7.1.1 || ^8.0",
+        "@symfony/stimulus-bridge": "^3.2.0",
+        "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
+        "@symfony/webpack-encore": "^6",
+        "core-js": "^3.38.0",
+        "regenerator-runtime": "^0.13.9",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^6",
+        "webpack-dev-server": "^5.1.0"
+    },
+    "overrides": {
+        "sockjs": {
+        "uuid": "^11"
+        }
     }
 }
